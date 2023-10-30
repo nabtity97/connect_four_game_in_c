@@ -22,7 +22,9 @@ typedef enum
 {
 	CONTINUE = 0x10,
 	WIN,
-	DRAW
+	DRAW,
+
+	NONE
 }game_state_t;
 
 typedef enum

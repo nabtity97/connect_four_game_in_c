@@ -24,12 +24,12 @@ game_state_t place_tokens(column_t column, player_t player)
 
 	if(FALSE == _is_valid_location(&real_column, &real_row))
 	{
-		printf("Invalid column\n");
+		printf("Invalid column. Try again\n");
 
 		// then display the last version of the game.
 		_display_updated_game_board();
 
-		return CONTINUE;
+		return NONE;
 	}
 
 	// to determine the token of the player
@@ -49,7 +49,8 @@ game_state_t place_tokens(column_t column, player_t player)
 
 	if(TRUE == _check_win(player, &current_location))
 	{
-		printf("------------GAME ENDED---------------\n");
+		printf("----------- PLAYER %d WON ----------\n", player);
+		printf("------------ GAME ENDED -----------\n");
 		return WIN;
 	}
 
@@ -68,7 +69,8 @@ bool_t _is_valid_location(const column_t* real_column, row_t* return_real_row)
 {
 	if(*real_column < 0 || *real_column > GAME_BOARD_COLUMS-1)
 	{
-		printf("wrong column input\n");
+		printf("---------------------------\n");
+		printf("Wrong column input\n");
 		// check if the column is out of the bounds
 		return FALSE;
 	}
@@ -93,6 +95,7 @@ bool_t _is_valid_location(const column_t* real_column, row_t* return_real_row)
 //-------------------------------------------------------------------
 void _display_updated_game_board(void)
 {
+	printf("-----------------------------\n");
 	for(int i = 0; i < GAME_BOARD_ROWS; i++)
 	{
 		for(int j = 0; j < GAME_BOARD_COLUMS; j++)
