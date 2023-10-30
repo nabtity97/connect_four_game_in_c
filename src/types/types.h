@@ -1,5 +1,5 @@
-#ifndef TYPES_H_
-#define TYPES_H_
+#ifndef TYPES_TYPES_H_
+#define TYPES_TYPES_H_
 
 typedef int column_t;
 typedef int row_t;
@@ -52,4 +52,4 @@ typedef enum
 	GAME_BOARD_COLUMS = 7
 }board_dimensions_t;
 
-#endif /* TYPES_H_ */
+#endif /* TYPES_TYPES_H_ */

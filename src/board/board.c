@@ -16,7 +16,7 @@ void init_the_game(void)
 	}
 	_display_updated_game_board();
 }
-
+//-------------------------------------------------------------------
 game_state_t place_tokens(column_t column, player_t player)
 {
 	column_t real_column = column - 1;
@@ -61,7 +61,6 @@ game_state_t place_tokens(column_t column, player_t player)
 
 	return CONTINUE;
 }
-
 //-------------------------------------------------------------------
 // Private functions
 //-------------------------------------------------------------------
@@ -318,4 +317,3 @@ bool_t _check_for_any_empty_slots(void)
 	}
 	return FALSE;
 }
-

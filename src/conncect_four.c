@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "board.h"
+#include "board/board.h"
 
 #define NUM_OF_SLOTS  (42U)
 

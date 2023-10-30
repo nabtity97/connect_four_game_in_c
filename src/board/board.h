@@ -1,9 +1,7 @@
-#ifndef BOARD_H_
-#define BOARD_H_
+#ifndef BOARD_BOARD_H_
+#define BOARD_BOARD_H_
 
-#include "types.h"
-
-
+#include "../types/types.h"
 
 //-------------------------------------------------------------------
 // Definitions
@@ -77,7 +75,4 @@ bool_t _check_diagonal_left_down(player_t player,const location_t* current_locat
 bool_t _check_diagonal_left_up(player_t player,const location_t* current_location);
 
 
-
-
-
-#endif /* BOARD_H_ */
+#endif /* BOARD_BOARD_H_ */
