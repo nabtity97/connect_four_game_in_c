@@ -14,7 +14,9 @@ void init_the_game(void)
 			_connect_four_arr[i][j] = ' ';
 		}
 	}
-	_display_updated_game_board();
+#ifdef  STILL_UNDER_IMPLEMENTATION
+		_display_updated_game_board();
+#endif
 }
 //-------------------------------------------------------------------
 game_state_t place_tokens(column_t column, player_t player)
@@ -47,7 +49,7 @@ game_state_t place_tokens(column_t column, player_t player)
 	// real current location
 	location_t current_location = {.col = real_column, .row = real_row};
 
-	if(TRUE == _check_win(player, &current_location))
+	if(TRUE == _check_horizontal(player, &current_location))
 	{
 		printf("----------- PLAYER %d WON ----------\n", player);
 		printf("------------ GAME ENDED -----------\n");
@@ -185,6 +187,56 @@ bool_t _check_horizontal_left(player_t player,const location_t* current_location
 	}
 	printf(" horizontal check left is true\n");
 	return TRUE;
+}
+//-------------------------------------------------------------------
+bool_t _check_horizontal(player_t player,const location_t* current_location)
+{
+	bool_t temp_right_direcion[2] = { 0 };
+	bool_t temp_left_direcion[2] = { 0 };
+
+	// will be updated with the corresponding token of hte player
+	token_t token;
+	_get_player_token(player,&token);
+
+	// check the right direction
+	for(int i = 1; i <= 2; i++)
+	{
+		// out of boundaries
+		if(current_location->col + i > LAST_COLUMN)
+		{
+//			printf("Column out of boundaries RHS\n");
+			continue;
+		}
+		if(_connect_four_arr[current_location->row][current_location->col + i] == token)
+		{
+//			printf(" set the value of temp_right_direcion[i-1] to true\n");
+			temp_right_direcion[i-1] = TRUE;
+		}
+	}
+
+	// check the left direction
+	for(int i = 1; i <= 2; i++)
+	{
+		// out of boundaries
+		if(current_location->col - i < FIRST_COLUMN)
+		{
+//			printf("Column out of boundaries LHS\n");
+			continue;
+		}
+		if(_connect_four_arr[current_location->row][current_location->col - i] == token)
+		{
+//			printf(" set the value of temp_LEFT_direcion[i-1] to true\n");
+			temp_left_direcion[i-1] = TRUE;
+		}
+	}
+
+	bool_t temp_horizontal[5] = {temp_left_direcion[1], 	// 2 steps behind our token
+							     temp_left_direcion[0], 	// 1 step behind our token
+								 TRUE,  					// my token
+								 temp_right_direcion[0],    // 1 step after out token
+								 temp_right_direcion[1]};   // 2 steps after our token
+
+	return _check_for_four_consecutive_tokens(temp_horizontal, sizeof(temp_horizontal)/sizeof(bool_t));
 }
 //-------------------------------------------------------------------
 bool_t _check_vertical_down(player_t player,const location_t* current_location)

@@ -2,6 +2,7 @@
 #define BOARD_BOARD_H_
 
 #include "../types/types.h"
+#include "../array_operations/arrays.h"
 
 //-------------------------------------------------------------------
 // Definitions
@@ -62,6 +63,7 @@ bool_t _check_for_any_empty_slots(void);
  * */
 bool_t _check_win(player_t player,const location_t* current_location);
 
+bool_t _check_horizontal(player_t player,const location_t* current_location);
 
 bool_t _check_horizontal_right(player_t player,const location_t* current_location);
 bool_t _check_horizontal_left(player_t player,const location_t* current_location);
